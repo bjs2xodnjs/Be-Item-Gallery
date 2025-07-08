@@ -4,6 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class AccountLoginReq {
-    private String logInId;
-    private String logInPw;
+    private String loginId;
+    private String loginPw;
 }
