@@ -10,4 +10,5 @@
             WHERE id IN (<foreach collection="ids" item="item" separator=",">#{item}</foreach>)
         </if>
     </select>
+
 </mapper>
