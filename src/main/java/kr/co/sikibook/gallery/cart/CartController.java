@@ -29,18 +29,27 @@ public class CartController {
         int result = cartService.save(req);
         return ResponseEntity.ok(result);
     }
+
     @GetMapping
-    public ResponseEntity<?>getCart(HttpServletRequest httpReq) {
+    public ResponseEntity<?> getCart(HttpServletRequest httpReq) {
         int logginedIdMemberId = (int) HttpUtils.getSessionValue(httpReq, AccountConstants.MEMBER_ID_NAME);
         List<CartGetRes> result = cartService.findAll(logginedIdMemberId);
         return ResponseEntity.ok(result);
 
     }
-    @DeleteMapping
-    public ResponseEntity<?> delete(HttpServletRequest httpReq, @ModelAttribute CartDeleteReq req) {
+
+    @DeleteMapping("/{cartId}")
+    public ResponseEntity<?> deleteMemberItem(HttpServletRequest httpReq, @PathVariable int cartId) {
         int logginedIdMemberId = (int) HttpUtils.getSessionValue(httpReq, AccountConstants.MEMBER_ID_NAME);
-        req.setMemberId(logginedIdMemberId);
-        int result =  cartService.remove(req);
+        CartDeleteReq req = new CartDeleteReq(cartId, logginedIdMemberId);
+        int result = cartService.remove(req);
+        return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteMemberCart(HttpServletRequest httpReq) {
+        int logginedMemberId = (int) HttpUtils.getSessionValue(httpReq, AccountConstants.MEMBER_ID_NAME);
+        int result = cartService.removeAll(logginedMemberId);
         return ResponseEntity.ok(result);
     }
 }

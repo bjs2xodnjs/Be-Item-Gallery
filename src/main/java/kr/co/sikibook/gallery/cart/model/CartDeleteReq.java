@@ -1,11 +1,17 @@
 package kr.co.sikibook.gallery.cart.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.BindParam;
 
 @Getter
-@Setter
+@AllArgsConstructor
 public class CartDeleteReq {
+    private int cartId;
     private int memberId;
-    private int itemId;
+
+    public CartDeleteReq(@BindParam("cart_id") int cartId) {
+        this.cartId = cartId;
+    }
 }
