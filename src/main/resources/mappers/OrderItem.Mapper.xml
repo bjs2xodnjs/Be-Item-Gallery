@@ -4,7 +4,7 @@
 <mapper namespace="kr.co.sikibook.gallery.order.OrderItemMapper">
 
     <insert id="save">
-        INSERT INTO order_items
+        INSERT INTO orders_items
         ( order_id, item_id )
         VALUES
         <foreach collection="itemIds" item="item" separator=",">
