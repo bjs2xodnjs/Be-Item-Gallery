@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OrderDetailGerReq {
+public class OrderDetailGetReq {
     private int orderId;
     private int memberId;
 }

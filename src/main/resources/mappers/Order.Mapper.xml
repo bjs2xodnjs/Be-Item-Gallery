@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--namespace="xml파일과 세트인 mapper interface의 풀 네임이 들어가야 한다."-->
 <mapper namespace="kr.co.sikibook.gallery.order.OrderMapper">
-
     <insert id="save" useGeneratedKeys="true" keyProperty="orderId">
         INSERT INTO orders
-        SET member_id = #{memberId},
-        name = #{name},
-        address = #{address},
-        payment = #{payment},
-        amount = #{amount}
+        SET member_id = #{memberId}
+        , name = #{name}
+        , address = #{address}
+        , payment = #{payment}
+        , amount = #{amount}
         <if test=" cardNumber != null and cardNumber != '' ">
-        , card_number = #{cardNumber}
-
+            , card_number = #{cardNumber}
         </if>
     </insert>
+
     <select id="findAllByMemberIdOrderByIdDesc">
-        SELECT id AS order_id, NAME, payment, amount, created
+        SELECT id, name, payment, amount, created
         FROM orders
         WHERE member_id = #{memberId}
         ORDER BY id DESC
@@ -27,7 +25,5 @@
         FROM orders
         WHERE id = #{orderId}
         AND member_id = #{memberId}
-
     </select>
-
 </mapper>

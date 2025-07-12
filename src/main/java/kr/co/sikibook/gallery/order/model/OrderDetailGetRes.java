@@ -2,11 +2,13 @@ package kr.co.sikibook.gallery.order.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class OrderDetailGetRes {
     private int id;
     private String name;
@@ -15,5 +17,4 @@ public class OrderDetailGetRes {
     private long amount;
     private String created;
     private List<OrderDetailDto> items;
-
 }
